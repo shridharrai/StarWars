@@ -1,24 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import { Container } from "@material-ui/core";
+import Header from './components/Header/Header';
+import Dropdown from './components/Dropdown/Dropdown';
+import { useState } from 'react';
+import Movies from './components/Movies/Movies';
 
 function App() {
+  const [selectedValue, setSelectedValue] = useState(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header></Header>
+      <div className="app">
+        <Container>
+          <Dropdown setSelectedValue={setSelectedValue} selectedValue={selectedValue}></Dropdown>
+          {
+            selectedValue && (<Movies selectedValue={selectedValue} />)
+          }
+        </Container>
+      </div>
+    </>
   );
 }
 
